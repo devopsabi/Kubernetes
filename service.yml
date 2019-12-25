@@ -1,0 +1,12 @@
+kind: Service 
+apiVersion: v1 
+metadata:
+    name: demo-service 
+spec:
+    type: NodePort
+    selector:
+        app: demo-app
+    ports:
+        - nodePort: 30165
+          port: 3000 
+          targetPort: 3000

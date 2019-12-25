@@ -1,0 +1,12 @@
+kind: Service 
+apiVersion: v1 
+metadata:
+    name: red-service 
+spec:
+    type: NodePort
+    selector:
+        app: red-app
+    ports:
+        - nodePort: 30168
+          port: 3002
+          targetPort: 3000

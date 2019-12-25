@@ -1,0 +1,13 @@
+kind: Pod 
+apiVersion: v1 
+metadata:
+    name: my-demo-pod 
+    labels:
+        app: demo-app
+        release: beta
+        environment: dev
+        team: team-green
+spec:
+    containers:
+        -   name: demo-container
+            image: devopsabi/kubernetes_test_app:1.0.0
