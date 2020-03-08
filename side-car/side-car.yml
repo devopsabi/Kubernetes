@@ -1,0 +1,26 @@
+kind: Pod 
+apiVersion: v1 
+metadata:
+    name: demo-app
+    labels:
+        app: demo-app
+        release: beta
+        environment: dev
+        team: demo-app
+spec:
+    volumes:
+        -   name: logs
+            emptyDir: {}
+    containers:
+        -   name: demo-container
+            image: devopsabi/kubernetes_demo_app:3.0
+            volumeMounts:
+                - name: logs
+                  mountPath: /app/logs
+        -   name: side-car-container
+            image: mhart/alpine-node:12
+            command: ["/bin/sh"]
+            args: ["-c", "while true; do cat /app/logs/access.log  | grep error; echo $?; sleep 5; done"]
+            volumeMounts:
+                - name: logs
+                  mountPath: /app/logs
